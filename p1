@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <mraa.h>
+#include <i2c.h>
+
+int main()
+{
+    mraa_i2c_context i2c;
+    i2c= mraa_i2c_init(0);
+    mraa_i2c_address(i2c,0x40);
+    
+    int s=0;
+    
+    do
+    {
+        printf("Menu \n");
+        printf("1.- Leer Temperatura\n");
+        printf("2.- Leer Humedad\n");
+        printf("3.- Leer Sensibilidad de Luz\n");
+        printf("4.- Salir \n");
+        scanf("%d",&s);
+        
+        switch(s)
+        {
+        
+            case 1:
+                printf("Temp");
+                break;
+                
+            case 2:
+                printf("Humedad");
+                break;
+            
+            case 3:
+                printf("Luz");
+                break;
+        }
+    }
+    while(s!=4);
+    
+    
+    return 0;
+}
