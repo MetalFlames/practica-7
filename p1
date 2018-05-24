@@ -2,13 +2,17 @@
 #include <mraa.h>
 #include <i2c.h>
 
-int main()
+int main(void)
 {
-    mraa_i2c_context i2c;
-    i2c= mraa_i2c_init(0);
-    mraa_i2c_address(i2c,0x40);
+    mraa_i2c_context temp;
+    mraa_i2c_context luz;
+    temp= mraa_i2c_init(0);
+    luz=mraa_i2c_init(0);
+    mraa_i2c_address(luz,0x70);
+    mraa_i2c_address(temp,0x40);
     
-    int s=0;
+    
+    float s=0,t=0,h=0,l=0;
     
     do
     {
@@ -23,15 +27,24 @@ int main()
         {
         
             case 1:
-                printf("Temp");
+                printf("Temp: \n");
+                t=mraa_i2c_read(temp,0x40);
+                x=(t/32)-50;
+                printf("%d",&x);
+                
                 break;
                 
             case 2:
-                printf("Humedad");
+                printf("Humedad: \n");
+                h=mraa_i2c_read(temp,0x40);
+                x=(h/16)-24;
+                
                 break;
             
             case 3:
-                printf("Luz");
+                printf("Luminidad: \n");
+                l=mraa_i2c_read(luz,0x70);
+                printf("%d",&l);
                 break;
         }
     }
