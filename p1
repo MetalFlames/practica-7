@@ -47,6 +47,7 @@ int main(void)
                 mraa_i2c_write(i2c,rx_tx_buf,2);
                 mraa_i2c_read_bytes_data(i2c,0x01,rx_tx_buf,2);
                 x=(h/16)-24;
+                printf("%d",&x);
                 
                 break;
             
